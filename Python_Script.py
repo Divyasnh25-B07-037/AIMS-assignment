@@ -56,7 +56,7 @@ Seniors_CG = {"Names":["Vishrut Bhaiya","Sparsh Bhaiya","Abhinav Bhaiya","Sukrit
               "CGPA":[np.nan, a, b, c, d, e]}
 S_C = pandu.DataFrame(Seniors_CG)
 print(S_C)
-Imp_Tech = input("Enter the imputation technique by which you would like to calculate the missing value, from the following options-\n mean, median or mode ").lower()
+Imp_Tech = input("Enter the imputation technique by which you would like to calculate the missing value, from the following options-\n mean, median, mode, 0 or constant ").lower()
 if Imp_Tech == "mean":
    mean_CG = S_C["CGPA"].mean(skipna=True)
    S_C["CGPA"] = S_C["CGPA"].fillna(mean_CG)
@@ -68,6 +68,13 @@ elif Imp_Tech == "median":
 elif Imp_Tech == "mode":
      Mode_CG = S_C["CGPA"].mode().iloc[0]
      S_C["CGPA"] = S_C["CGPA"].fillna(Mode_CG)
+     print(S_C)
+elif Imp_Tech == "0":
+     S_C["CGPA"] = S_C["CGPA"].fillna(0)
+     print(S_C)
+elif Imp_Tech == "constant":
+     Number = float(input("Enter the contant number to fill the missing value "))
+     S_C["CGPA"] = S_C["CGPA"].fillna(Number)
      print(S_C)
 else:
      print("You have entered some other imputation techniques or anything else. Kindly enter the imputation technique as specified above.")
